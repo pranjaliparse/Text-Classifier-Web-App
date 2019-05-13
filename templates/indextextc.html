@@ -1,0 +1,79 @@
+
+{% extends "material/base.html" %}
+{% block content %}
+<!--<body background="static/imgs/text2.jpg"></body>-->
+    <div class="card-panel  red">
+        <div class="row 3">
+            <div class="col 12 m12 offest-ml center">
+                <h2>Text Classification</h2>
+                <p>ML Web App</p>   
+                <a href="{{url_for('index')}}" class="btn btn-small wave-effect waves-dark pink lighten-5 black-text">Reset</a>        
+            </div>
+        </div>
+    </div>
+    
+    <section class="section section-signup center" rows="100" >
+            <div class="container"  > 
+              <div class="row s100"  >
+                <div class="col s12 m6" >
+                  <div class="card-panel grey lighten-5 grey-text text-darken-4 z-depth-10 "  >
+                    <form action="{{ url_for('analyze')}}" method="POST">
+                      <div class="input-field row 100">
+                       <p class="center" >
+                            <textarea rows="20" id="MyText" name="MyText" ></textarea>
+                        <label for="Enter the Text" class="active">Enter the Text</label>
+                        </p>
+                      </div>
+                       
+                      <input type="submit" value="Predict" class="btn lighten-4 black-text white">
+                      <input type="reset" value="Clear" class="btn lighten-4 black-text white">
+                    </form>
+                  </div>
+                </div>        
+              
+        
+                 <div class="col s12 m5 offers center">
+                    <div class="card-panel grey lighten-5 grey-text text-darken-4 z-depth-10"  >
+                    <h5>Prediction</h5>
+                      <div class="collection" role="alert">
+                        <p class="collection-item active white black-text">Predicted result - {{ result_prediction }} </p>
+                    </div>       				
+                    <div class="card-image waves-effect waves-block waves-light row 150">
+                            {% if result_prediction == ['business'] %}
+                            <img src="static/imgs/business.jpg" width="300px" height="300px">
+        
+                            {% elif result_prediction == ['entertainment']  %}
+                              <img src="static/imgs/entertainment.jpg" width="300px" height="300px">
+                            
+                            {% elif result_prediction == ['sport']  %}
+                              <img src="static/imgs/sport.jpg" width="300px" height="300px" >
+
+                            {% elif result_prediction == ['politics']  %}
+                              <img src="static/imgs/politics.jpg" width="300px" height="300px" >
+
+                            {% elif result_prediction == ['tech']  %}
+                              <img src="static/imgs/tech.jpg" width="300px" height="300px" >
+        
+                            {% else %}
+                                <h5>No Prediction Yet</h5>
+                        
+                          
+                            {% endif%}
+                            
+                    
+                           </div>
+                    </div>
+                  
+                  </div>
+                  
+                </div>
+              </div>
+            
+          </section>
+    
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+{% endblock %}
